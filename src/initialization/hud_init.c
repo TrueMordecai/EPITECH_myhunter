@@ -30,15 +30,24 @@ static entity_t *hud_portrait_init(void)
     return (entity);
 }
 
-static char *hud_score_init(void)
+static char *hud_str_init(bool mod)
 {
-    char *score = malloc(sizeof(char) * 4);
+    char *str;
 
-    score[0] = '0';
-    score[1] = '0';
-    score[2] = '0';
-    score[3] = '\0';
-    return (score);
+    if (mod == true) {
+        str = malloc(sizeof(char) * 4);
+        str[0] = '0';
+        str[1] = '0';
+        str[2] = '0';
+        str[3] = '\0';
+        return (str);
+    } else {
+        str = malloc(sizeof(char) * 3);
+        str[0] = '5';
+        str[1] = '0';
+        str[2] = '\0';
+        return (str);
+    }
 }
 
 static sfText *hud_score_text_init(void)
@@ -65,6 +74,8 @@ hud_t *hud_init(void)
     hud->bground = hud_sprite_init();
     hud->score_text = hud_score_text_init();
     hud->portrait = hud_portrait_init();
-    hud->score = hud_score_init();
+    hud->score = hud_str_init(true);
+    hud->timer_str = hud_str_init(false);
+    hud->timer_clock = sfClock_create();
     return (hud);
 }

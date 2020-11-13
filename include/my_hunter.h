@@ -69,6 +69,10 @@ typedef struct hud_s {
     sfText *score_text;
     sfVector2f test_pos;
     char *score;
+    sfClock *timer_clock;
+    sfTime timer_time;
+    char *timer_str;
+    float seconds;
 } hud_t;
 
 typedef struct cursor_s {

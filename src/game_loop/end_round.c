@@ -39,6 +39,7 @@ static void score_update(game_t *game)
 void end_round_win(game_t *game)
 {
     for (int i = 0; i != 2; i++) {
+        sfClock_restart(HUD->timer_clock);
         sfRenderWindow_clear(game->core->window, sfWhite);
         sfRenderWindow_drawSprite(CORE->window, INTRUDER->sprite, NULL);
         hud_display(game);
