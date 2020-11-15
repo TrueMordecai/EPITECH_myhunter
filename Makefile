@@ -19,7 +19,9 @@ SRC			=		src/main/main.c								\
 					src/game_loop/round_type/rt_statue.c		\
 					src/game_loop/round_type/index.c			\
 					src/game_loop/end_round.c					\
+					src/game_loop/game_over.c					\
 					src/game_loop/hud_display.c					\
+					src/game_loop/cursor_display.c				\
 					src/tool/tool_func.c						\
 					src/tool/randomizer.c
 

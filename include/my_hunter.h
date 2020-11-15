@@ -25,7 +25,7 @@
 #define CORE game->core
 #define ENTITY game->entity[i]
 #define INTRUDER game->entity[0]
-#define CURSOR game->cursor
+#define CURSOR game->curs
 #define HUD game->hud
 #define ROUND_TYPE game->hud->round_type
 #define INTRUDER_TYPE game->entity[0]->type
@@ -78,7 +78,7 @@ typedef struct hud_s {
 typedef struct cursor_s {
     sfVector2i pos;
     bool is_click;
-    entity_t skin;
+    entity_t *skin;
 } cursor_t;
 
 typedef struct player_s {
@@ -107,6 +107,7 @@ void round_type_index_select(game_t *game);
 void entity_display(game_t *game);
 bool is_intruder_click(game_t *game);
 void display_round(game_t *game);
+void cursor_display(game_t *game);
 void cursor_update(game_t *game);
 void end_round_win(game_t *game);
 int main_loop(void);
@@ -114,4 +115,6 @@ int main(void);
 sfColor color_create(uint r, uint g, uint b, uint a);
 sfVector2f vector_create(float x, float y);
 sfIntRect rect_create(int top, int left, int height, int width);
+sfVector2f vector2i_to_vector2f(sfVector2i vect);
+bool is_game_over(game_t *game);
 #endif

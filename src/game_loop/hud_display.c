@@ -64,7 +64,7 @@ static void hud_timer_display(game_t *game)
 {
     sfText_setString(HUD->score_text, HUD->timer_str);
     sfText_setPosition(HUD->score_text, vector_create(20, 500));
-    if (HUD->timer_str[0] == '4')
+    if (HUD->timer_str[0] == '0')
         sfText_setColor(HUD->score_text, color_create(200, 70, 10, 255));
     sfRenderWindow_drawText(CORE->window, HUD->score_text, NULL);
     hud_timer_update(game);

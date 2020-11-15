@@ -7,6 +7,15 @@
 
 #include "my_hunter.h"
 
+sfVector2f vector2i_to_vector2f(sfVector2i vect)
+{
+    sfVector2f nvect;
+
+    nvect.x = (float)vect.x;
+    nvect.y = (float)vect.y;
+    return (nvect);
+}
+
 void set_entity_rect(entity_t *entity)
 {
     if (entity->type == MARIO)

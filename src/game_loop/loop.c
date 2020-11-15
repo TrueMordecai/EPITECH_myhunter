@@ -41,6 +41,7 @@ void display_round(game_t *game)
     round_type_index_select(game);
     entity_display(game);
     hud_display(game);
+    cursor_display(game);
     sfRenderWindow_display(game->core->window);
 }
 
@@ -60,10 +61,11 @@ int main_loop(void)
     if (!game)
         return (0);
     while (sfKeyboard_isKeyPressed(sfKeyQ) != sfTrue) {
-        cursor_update(game);
         display_round(game);
         if (is_intruder_click(game))
             end_round_win(game);
+        if (is_game_over(game))
+            break;
     }
     return (1);
 }

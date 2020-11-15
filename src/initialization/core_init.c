@@ -17,5 +17,6 @@ core_t *core_init(void)
     core->name = "my_hunter";
     core->window = sfRenderWindow_create(core->video_mode, core->name,
     sfClose | sfResize, NULL);
+    sfRenderWindow_setMouseCursorVisible(core->window, sfFalse);
     return (core);
 }
