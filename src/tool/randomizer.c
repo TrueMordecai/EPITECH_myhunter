@@ -9,8 +9,8 @@
 
 sfVector2f speed_randomizer(void)
 {
-    float x = (rand() % 4) + 1;
-    float y = (rand() % 4) + 1;
+    float x = (rand() % 4) + 1.5;
+    float y = (rand() % 4) + 1.5;
 
     if (rand() % 2 == 0)
         x *= -1;
@@ -21,8 +21,8 @@ sfVector2f speed_randomizer(void)
 
 sfVector2f position_randomizer(entity_t *entity)
 {
-    float x = (rand() % (int)(1920 - entity->rect.left * entity->scale.x - 700)) + 500;
-    float y = (rand() % (int)(1080 - entity->rect.height * entity->scale.y - 150));
+    float x = (rand() % (int)(1920 - entity->rect.left * entity->scale.x - 600)) + 500;
+    float y = (rand() % (int)(1080 - entity->rect.height * entity->scale.y - 50));
 
     return (vector_create(x, y));
 }
