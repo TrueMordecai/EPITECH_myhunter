@@ -40,6 +40,7 @@ entity_t **entity_init(void)
 {
     entity_t **entity = malloc(sizeof(entity_t *) * (HEAD_MAX));
     sfTexture *temp_texture = sfTexture_createFromFile("image/head.png", NULL);
+
     entity[0] = intruder_init(temp_texture);
     for (int i = 1; i != HEAD_MAX - 1; i++) {
         entity[i] = malloc(sizeof(entity_t));

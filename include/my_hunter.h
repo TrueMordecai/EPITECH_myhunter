@@ -23,6 +23,7 @@
 #define HEAD_MAX 150
 #define RESOLUTION_X 1920
 #define RESOLUTION_Y 1080
+#define FRAME_RATE 60
 #define CORE game->core
 #define ENTITY game->entity[i]
 #define INTRUDER game->entity[0]
@@ -48,6 +49,9 @@ typedef enum {
 typedef struct core_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
+    sfClock *mvmt_clock;
+    sfTime mvmt_time;
+    float mvmt_seconds;
     char *name;
 } core_t;
 

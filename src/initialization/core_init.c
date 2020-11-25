@@ -14,9 +14,13 @@ core_t *core_init(void)
     core->video_mode.width = RESOLUTION_X;
     core->video_mode.height = RESOLUTION_Y;
     core->video_mode.bitsPerPixel = 32;
+    core->mvmt_clock = sfClock_create();
+    core->mvmt_time = sfTime_Zero;
+    core->mvmt_seconds = (float)0;
     core->name = "my_hunter";
     core->window = sfRenderWindow_create(core->video_mode, core->name,
     sfClose | sfResize, NULL);
     sfRenderWindow_setMouseCursorVisible(core->window, sfFalse);
+    sfRenderWindow_setFramerateLimit(core->window, FRAME_RATE);
     return (core);
 }
