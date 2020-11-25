@@ -49,6 +49,7 @@ typedef enum {
 typedef struct core_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
+    sfEvent event;
     sfClock *mvmt_clock;
     sfTime mvmt_time;
     float mvmt_seconds;
@@ -113,7 +114,6 @@ void entity_display(game_t *game);
 bool is_intruder_click(game_t *game);
 void display_round(game_t *game);
 void cursor_display(game_t *game);
-void cursor_update(game_t *game);
 void end_round_win(game_t *game);
 void set_entity_music(entity_t *entity);
 void game_destroy(game_t *game);

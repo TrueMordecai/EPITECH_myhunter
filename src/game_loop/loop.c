@@ -47,13 +47,11 @@ void display_round(game_t *game)
     sfRenderWindow_display(game->core->window);
 }
 
-void cursor_update(game_t *game)
+void window_event(game_t *game)
 {
-    game->curs->is_click = false;
-    if (sfMouse_isButtonPressed(sfMouseLeft))
-        game->curs->is_click = true;
-    game->curs->pos.x = sfMouse_getPositionRenderWindow(CORE->window).x;
-    game->curs->pos.y = sfMouse_getPositionRenderWindow(CORE->window).y;
+    sfRenderWindow_pollEvent(CORE->window, &CORE->event);
+    if (CORE->event.type  == sfEvtClosed)
+        sfRenderWindow_close(CORE->window);
 }
 
 int main_loop(void)
@@ -62,7 +60,9 @@ int main_loop(void)
 
     if (!game)
         return (0);
-    while (sfKeyboard_isKeyPressed(sfKeyQ) != sfTrue) {
+
+    while (sfRenderWindow_isOpen(CORE->window)) {
+        window_event(game);
         display_round(game);
         if (is_intruder_click(game))
             end_round_win(game);
