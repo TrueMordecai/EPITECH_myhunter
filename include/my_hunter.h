@@ -8,6 +8,7 @@
 #ifndef _HUNTER_H_
 #define _HUNTER_H_
 #include <math.h>
+#include <SFML/Audio.h>
 #include <SFML/Graphics.h>
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Color.h>
@@ -58,6 +59,7 @@ typedef struct entity_s {
     sfIntRect rect;
     sfVector2f vect;
     head_type_t type;
+    sfMusic *found_sound;
 } entity_t;
 
 typedef struct hud_s {
@@ -65,7 +67,6 @@ typedef struct hud_s {
     round_type_t round_type;
     int round_type_alternative;
     entity_t *portrait;
-    sfFont *font;
     sfText *score_text;
     sfVector2f test_pos;
     char *score;
@@ -110,6 +111,8 @@ void display_round(game_t *game);
 void cursor_display(game_t *game);
 void cursor_update(game_t *game);
 void end_round_win(game_t *game);
+void set_entity_music(entity_t *entity);
+void game_destroy(game_t *game);
 int main_loop(void);
 int main(void);
 sfColor color_create(uint r, uint g, uint b, uint a);

@@ -12,9 +12,10 @@ static void round_reset(game_t *game)
     HUD->round_type = rand() % END_ROUND_TYPE_T;
     HUD->round_type_alternative = rand() % 2;
     INTRUDER->type = rand() % 4;
-    INTRUDER->pos = position_randomizer(INTRUDER);
     INTRUDER->vect = speed_randomizer();
+    INTRUDER->pos = position_randomizer(INTRUDER);
     set_entity_rect(INTRUDER);
+    set_entity_music(INTRUDER);
     for (int i = 1; i != HEAD_MAX - 1; i++) {
         ENTITY->type = rand() % 4;
         ENTITY->vect = speed_randomizer();
@@ -36,8 +37,14 @@ static void score_update(game_t *game)
     }
 }
 
+static void play_sound(game_t *game)
+{
+    sfMusic_play(INTRUDER->found_sound);
+}
+
 void end_round_win(game_t *game)
 {
+    play_sound(game);
     for (int i = 0; i != 2; i++) {
         sfClock_restart(HUD->timer_clock);
         sfRenderWindow_clear(game->core->window, sfWhite);

@@ -27,6 +27,8 @@ void entity_display(game_t *game)
 
 bool is_intruder_click(game_t *game)
 {
+    if (sfKeyboard_isKeyPressed(sfKeyP))
+        return (true);
     if (!game->curs->is_click)
         return (false);
     if (game->curs->pos.x >= INTRUDER->pos.x && game->curs->pos.x <= INTRUDER->pos.x + (INTRUDER->rect.width * INTRUDER->scale.x))
@@ -67,5 +69,6 @@ int main_loop(void)
         if (is_game_over(game))
             break;
     }
+    game_destroy(game);
     return (1);
 }

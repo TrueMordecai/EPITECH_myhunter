@@ -23,7 +23,8 @@ SRC			=		src/main/main.c								\
 					src/game_loop/hud_display.c					\
 					src/game_loop/cursor_display.c				\
 					src/tool/tool_func.c						\
-					src/tool/randomizer.c
+					src/tool/randomizer.c						\
+					src/destroy/game_destroy.c
 
 OBJ			=		$(SRC:%c=%o)
 
