@@ -7,7 +7,7 @@
 
 #include "my_hunter.h"
 
-static void round_reset(game_t *game)
+static void end_round_win_round_reset(game_t *game)
 {
     HUD->round_type = rand() % END_ROUND_TYPE_T;
     HUD->round_type_alternative = rand() % 2;
@@ -26,7 +26,7 @@ static void round_reset(game_t *game)
     }
 }
 
-static void score_update(game_t *game)
+static void end_round_win_score_update(game_t *game)
 {
     HUD->score[2]++;
     for (int i = 2; i != 0; i--) {
@@ -37,27 +37,44 @@ static void score_update(game_t *game)
     }
 }
 
-static void play_sound(game_t *game)
+static void end_round_win_particle_draw(game_t *game)
 {
-    sfMusic_play(INTRUDER->found_sound);
+    for (int i = 0; i != PARTICLE_MAX - 1; i++) {
+        PARTICLE->pos_tab[i].x += PARTICLE->speed_tab[i].x;
+        PARTICLE->pos_tab[i].y += PARTICLE->speed_tab[i].y;
+        sfSprite_setPosition(PARTICLE->sprite, PARTICLE->pos_tab[i]);
+        sfRenderWindow_drawSprite(CORE->window, PARTICLE->sprite, NULL);
+    }
+}
+
+static void end_round_win_particle_update(game_t *game)
+{
+    for (int i = 0; i != PARTICLE_MAX - 1; i++) {
+        PARTICLE->speed_tab[i].x -= PARTICLE->speed_tab[i].x / 20;
+        PARTICLE->speed_tab[i].y -= PARTICLE->speed_tab[i].y / 20;
+    }
+    end_round_win_particle_draw(game);
 }
 
 void end_round_win(game_t *game)
 {
-    play_sound(game);
-    for (int i = 0; i != 2; i++) {
-        sfClock_restart(HUD->timer_clock);
-        sfRenderWindow_clear(game->core->window, sfWhite);
-        sfRenderWindow_drawSprite(CORE->window, INTRUDER->sprite, NULL);
-        hud_display(game);
-        sfRenderWindow_display(CORE->window);
-        usleep(300000);
-        sfRenderWindow_clear(CORE->window, sfBlack);
-        sfRenderWindow_drawSprite(CORE->window, INTRUDER->sprite, NULL);
-        hud_display(game);
-        sfRenderWindow_display(CORE->window);
-        usleep(300000);
+    sfMusic_play((INTRUDER->found_sound));
+    sfClock_restart(PARTICLE->clock);
+    for (int i = 0; i != PARTICLE_MAX - 1; i++) {
+        PARTICLE->speed_tab[i] = speed_randomizer_particle();
+        PARTICLE->pos_tab[i] = position_randomizer_particle(INTRUDER);
     }
-    score_update(game);
-    round_reset(game);
+    while (PARTICLE->seconds < 1.2) {
+        sfClock_restart(HUD->timer_clock);
+        sfRenderWindow_clear(CORE->window, sfBlack);
+        PARTICLE->time = sfClock_getElapsedTime(PARTICLE->clock);
+        PARTICLE->seconds = sfTime_asSeconds(PARTICLE->time);
+        end_round_win_particle_update(game);
+        sfRenderWindow_drawSprite(CORE->window, INTRUDER->sprite, NULL);
+        hud_display(game);
+        sfRenderWindow_display(CORE->window);
+    }
+    PARTICLE->seconds = 0;
+    end_round_win_score_update(game);
+    end_round_win_round_reset(game);
 }

@@ -18,6 +18,7 @@ game_t *game_init(void)
     game->core = core_init();
     game->curs = cursor_init();
     game->entity = entity_init();
+    game->particle = particle_init();
     sfRenderWindow_setFramerateLimit(CORE->window, 60);
     return (game);
 }

@@ -48,8 +48,10 @@ static void hud_timer_update(game_t *game)
     HUD->timer_time = sfClock_getElapsedTime(HUD->timer_clock);
     HUD->seconds = sfTime_asSeconds(HUD->timer_time);
     if (HUD->seconds < 1) {
+        sfMusic_stop(HUD->bground.found_sound);
         return;
     }
+    sfMusic_play(HUD->bground.found_sound);
     HUD->timer_str[1]--;
     for (int i = 1; i != 0; i--) {
         if (HUD->timer_str[i] == '0' - 1) {

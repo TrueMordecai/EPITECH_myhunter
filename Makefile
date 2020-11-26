@@ -13,6 +13,7 @@ SRC			=		src/main/main.c								\
 					src/initialization/entity_init.c			\
 					src/initialization/game_init.c				\
 					src/initialization/hud_init.c				\
+					src/initialization/particle_init.c			\
 					src/game_loop/loop.c						\
 					src/game_loop/round_type/rt_bounce.c		\
 					src/game_loop/round_type/rt_ghost.c			\

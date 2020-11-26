@@ -14,6 +14,7 @@ static entity_t hud_sprite_init(void)
     bground.sprite = sfSprite_create();
     bground.texture = sfTexture_createFromFile("image/hud.png", NULL);
     sfSprite_setTexture(bground.sprite, bground.texture, sfTrue);
+    bground.found_sound = sfMusic_createFromFile("sound/test1.wav");
     return (bground);
 }
 

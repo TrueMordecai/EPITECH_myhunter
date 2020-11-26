@@ -39,7 +39,7 @@ void game_destroy(game_t *game)
     destroy_entity(INTRUDER, "101");
     for (int i = 1; i != HEAD_MAX - 1; i++) {
         destroy_entity(ENTITY, "101");
-        free (ENTITY);
+        free(ENTITY);
     }
     free(game->entity);
     destroy_entity(game->curs->skin, "110");

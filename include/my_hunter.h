@@ -21,12 +21,14 @@
 #include <unistd.h>
 #include "my.h"
 #define HEAD_MAX 150
+#define PARTICLE_MAX 20
 #define RESOLUTION_X 1920
 #define RESOLUTION_Y 1080
 #define FRAME_RATE 60
 #define CORE game->core
 #define ENTITY game->entity[i]
 #define INTRUDER game->entity[0]
+#define PARTICLE game->particle
 #define CURSOR game->curs
 #define HUD game->hud
 #define ROUND_TYPE game->hud->round_type
@@ -87,23 +89,33 @@ typedef struct cursor_s {
     entity_t *skin;
 } cursor_t;
 
-typedef struct player_s {
-    entity_t player_entity;
-} player_t;
+typedef struct particle_s {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f *pos_tab;
+    sfVector2f *speed_tab;
+    sfClock *clock;
+    sfTime time;
+    float seconds;
+} particle_t;
 
 typedef struct game_s {
     hud_t *hud;
     core_t *core;
     entity_t **entity;
     cursor_t *curs;
+    particle_t *particle;
 } game_t;
 core_t *core_init(void);
 sfVector2f position_randomizer(entity_t *entity);
 void set_entity_rect(entity_t *entity);
 sfVector2f speed_randomizer(void);
+sfVector2f speed_randomizer_particle(void);
+sfVector2f position_randomizer_particle(entity_t *entity);
 entity_t **entity_init(void);
 hud_t *hud_init(void);
 cursor_t *cursor_init(void);
+particle_t *particle_init(void);
 game_t *game_init(void);
 void hud_display(game_t *game);
 void bounce_round_type_entity_update(game_t *game);

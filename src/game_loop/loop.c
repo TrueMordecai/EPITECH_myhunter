@@ -50,7 +50,7 @@ void display_round(game_t *game)
 void window_event(game_t *game)
 {
     sfRenderWindow_pollEvent(CORE->window, &CORE->event);
-    if (CORE->event.type  == sfEvtClosed)
+    if (CORE->event.type == sfEvtClosed)
         sfRenderWindow_close(CORE->window);
 }
 
