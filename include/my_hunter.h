@@ -24,7 +24,7 @@
 #define PARTICLE_MAX 20
 #define RESOLUTION_X 1920
 #define RESOLUTION_Y 1080
-#define FRAME_RATE 60
+#define FRAME_RATE 60000
 #define CORE game->core
 #define ENTITY game->entity[i]
 #define INTRUDER game->entity[0]
@@ -136,7 +136,6 @@ void end_round_win(game_t *game);
 void set_entity_music(entity_t *entity);
 void game_destroy(game_t *game);
 int main_loop(void);
-int main(void);
 sfColor color_create(uint r, uint g, uint b, uint a);
 sfVector2f vector_create(float x, float y);
 sfIntRect rect_create(int top, int left, int height, int width);
