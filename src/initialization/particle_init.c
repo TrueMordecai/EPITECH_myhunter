@@ -20,7 +20,7 @@ particle_t *particle_init(void)
     particle->clock = sfClock_create();
     particle->time = sfTime_Zero;
     particle->seconds = 0;
-    for(int i = 0; i != PARTICLE_MAX - 1; i++)
+    for (int i = 0; i != PARTICLE_MAX - 1; i++)
         particle->speed_tab[i] = speed_randomizer();
     return (particle);
 }

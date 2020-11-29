@@ -77,4 +77,5 @@ void hud_display(game_t *game)
     hud_score_display(game);
     hud_timer_display(game);
     hud_portrait_display(game);
+    hud_turtle_display(game);
 }

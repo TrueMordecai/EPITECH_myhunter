@@ -14,7 +14,8 @@ static entity_t hud_sprite_init(void)
     bground.sprite = sfSprite_create();
     bground.texture = sfTexture_createFromFile("image/hud.png", NULL);
     sfSprite_setTexture(bground.sprite, bground.texture, sfTrue);
-    bground.found_sound = sfMusic_createFromFile("sound/test1.wav");
+    bground.found_sound = sfMusic_createFromFile("sound/timer.wav");
+    sfMusic_setLoop(bground.found_sound, sfTrue);
     return (bground);
 }
 
@@ -78,5 +79,6 @@ hud_t *hud_init(void)
     hud->score = hud_str_init(true);
     hud->timer_str = hud_str_init(false);
     hud->timer_clock = sfClock_create();
+    hud->turtle = hud_turtle_init();
     return (hud);
 }

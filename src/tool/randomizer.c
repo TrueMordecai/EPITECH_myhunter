@@ -39,10 +39,10 @@ sfVector2f speed_randomizer(void)
     return (vector_create(x, y));
 }
 
-sfVector2f position_randomizer(entity_t *entity)
+sfVector2f position_randomizer(entity_t *e)
 {
-    float x = (rand() % (int)(1920 - entity->rect.left * entity->scale.x - 600)) + 500;
-    float y = (rand() % (int)(1080 - entity->rect.height * entity->scale.y - 50));
+    float x = (rand() % (int)(1920 - e->rect.left * e->scale.x - 600)) + 500;
+    float y = (rand() % (int)(1080 - e->rect.height * e->scale.y - 50));
 
     return (vector_create(x, y));
 }

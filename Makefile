@@ -14,6 +14,7 @@ SRC			=		src/main/main.c								\
 					src/initialization/game_init.c				\
 					src/initialization/hud_init.c				\
 					src/initialization/particle_init.c			\
+					src/initialization/hud_turtle_init.c		\
 					src/game_loop/loop.c						\
 					src/game_loop/round_type/rt_bounce.c		\
 					src/game_loop/round_type/rt_ghost.c			\
@@ -22,6 +23,7 @@ SRC			=		src/main/main.c								\
 					src/game_loop/end_round.c					\
 					src/game_loop/game_over.c					\
 					src/game_loop/hud_display.c					\
+					src/game_loop/hud_turtle_display.c			\
 					src/game_loop/cursor_display.c				\
 					src/tool/tool_func.c						\
 					src/tool/randomizer.c						\

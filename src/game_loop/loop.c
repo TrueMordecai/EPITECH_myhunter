@@ -13,12 +13,14 @@ void entity_display(game_t *game)
     if (game->hud->round_type != STATUE) {
         for (int i = 0; i != HEAD_MAX - 1; i++) {
             sfSprite_setPosition(ENTITY->sprite, ENTITY->pos);
-            sfRenderWindow_drawSprite(game->core->window, game->entity[i]->sprite, NULL);
+            sfRenderWindow_drawSprite(game->core->window, \
+            game->entity[i]->sprite, NULL);
         }
     } else {
         for (int i = 1; i != HEAD_MAX - 1; i++) {
             sfSprite_setPosition(ENTITY->sprite, ENTITY->pos);
-            sfRenderWindow_drawSprite(game->core->window, game->entity[i]->sprite, NULL);
+            sfRenderWindow_drawSprite(game->core->window, \
+            game->entity[i]->sprite, NULL);
         }
         sfSprite_setPosition(INTRUDER->sprite, INTRUDER->pos);
         sfRenderWindow_drawSprite(CORE->window, INTRUDER->sprite, NULL);
@@ -31,8 +33,10 @@ bool is_intruder_click(game_t *game)
         return (true);
     if (!game->curs->is_click)
         return (false);
-    if (game->curs->pos.x >= INTRUDER->pos.x && game->curs->pos.x <= INTRUDER->pos.x + (INTRUDER->rect.width * INTRUDER->scale.x))
-        if (game->curs->pos.y >= INTRUDER->pos.y && game->curs->pos.y <= INTRUDER->pos.y + (INTRUDER->rect.height * INTRUDER->scale.y))
+    if (game->curs->pos.x >= INTRUDER->pos.x && game->curs->pos.x <=\
+        INTRUDER->pos.x + (INTRUDER->rect.width * INTRUDER->scale.x))
+        if (game->curs->pos.y >= INTRUDER->pos.y && game->curs->pos.y <=\
+            INTRUDER->pos.y + (INTRUDER->rect.height * INTRUDER->scale.y))
             return (true);
     return (false);
 }

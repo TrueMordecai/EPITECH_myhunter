@@ -66,11 +66,15 @@ typedef struct entity_s {
     sfIntRect rect;
     sfVector2f vect;
     head_type_t type;
+    sfTime time;
+    sfClock *clock;
+    float seconds;
     sfMusic *found_sound;
 } entity_t;
 
 typedef struct hud_s {
     entity_t bground;
+    entity_t turtle;
     round_type_t round_type;
     int round_type_alternative;
     entity_t *portrait;
@@ -106,6 +110,7 @@ typedef struct game_s {
     cursor_t *curs;
     particle_t *particle;
 } game_t;
+entity_t hud_turtle_init(void);
 core_t *core_init(void);
 sfVector2f position_randomizer(entity_t *entity);
 void set_entity_rect(entity_t *entity);
@@ -118,6 +123,7 @@ cursor_t *cursor_init(void);
 particle_t *particle_init(void);
 game_t *game_init(void);
 void hud_display(game_t *game);
+void hud_turtle_display(game_t *game);
 void bounce_round_type_entity_update(game_t *game);
 void ghost_round_type_entity_update(game_t *game);
 void statue_round_type_entity_update(game_t *game);

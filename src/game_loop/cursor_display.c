@@ -19,6 +19,7 @@ static void cursor_update(game_t *game)
 void cursor_display(game_t *game)
 {
     cursor_update(game);
-    sfSprite_setPosition(CURSOR->skin->sprite, vector2i_to_vector2f(CURSOR->pos));
+    sfSprite_setPosition(CURSOR->skin->sprite, \
+    vector2i_to_vector2f(CURSOR->pos));
     sfRenderWindow_drawSprite(CORE->window, CURSOR->skin->sprite, NULL);
 }

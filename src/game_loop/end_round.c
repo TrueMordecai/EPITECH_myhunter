@@ -58,7 +58,7 @@ static void end_round_win_particle_update(game_t *game)
 
 void end_round_win(game_t *game)
 {
-    sfMusic_play((INTRUDER->found_sound));
+    sfMusic_play(INTRUDER->found_sound);
     sfClock_restart(PARTICLE->clock);
     for (int i = 0; i != PARTICLE_MAX - 1; i++) {
         PARTICLE->speed_tab[i] = speed_randomizer_particle();
@@ -74,6 +74,7 @@ void end_round_win(game_t *game)
         hud_display(game);
         sfRenderWindow_display(CORE->window);
     }
+    sfMusic_stop(INTRUDER->found_sound);
     PARTICLE->seconds = 0;
     end_round_win_score_update(game);
     end_round_win_round_reset(game);
