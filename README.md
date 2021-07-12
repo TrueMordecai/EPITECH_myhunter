@@ -1,4 +1,4 @@
-#EPITECH_myhunter
+# EPITECH_myhunter
 
 Mirror of my runner Game done thanks to CSFML
 
